@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Main from "./components/Main";
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    datum: new Date().toLocaleDateString(),
+    naslov: "Učilište Algebra",
+  };
+  promijeniNaslov = () => {
+    this.setState({ naslov: "Novi tečaj u Algebri" });
+  };
+
+  render() {
+    const { naslov, datum } = this.state;
+    return (
+      <>
+        <Header naslov={naslov} />
+        <Main />
+        <Footer datum={datum} />
+        <button type="button" onClick={this.promijeniNaslov}>
+          {" "}
+          Promijeni naslov
+        </button>
+      </>
+    );
+  }
 }
-
 export default App;
